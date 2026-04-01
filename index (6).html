@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Are you yjhyl?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #FFFDEC;
+      --card:        #FFFFFF;
+      --accent:      #86A788;
+      --accent-dark: #6a8a6c;
+      --pink-light:  #FFE2E2;
+      --pink:        #FFCFCF;
+      --text:        #3a3530;
+      --muted:       #9a9188;
+      --border:      #ede8d8;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 85%, rgba(255,207,207,0.55) 0%, transparent 50%),
+        radial-gradient(ellipse at 88% 8%,  rgba(134,167,136,0.18) 0%, transparent 48%);
+      pointer-events: none;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 60px 56px;
+      max-width: 460px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(134,167,136,0.13), 0 4px 16px rgba(0,0,0,0.05);
+      animation: fadeUp 0.7s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 44px;
+    }
+
+    .divider {
+      width: 44px;
+      height: 3px;
+      background: var(--pink);
+      margin: 0 auto 36px;
+      border-radius: 4px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 13px 38px;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+
+    .btn-yes {
+      background: var(--pink-light);
+      color: var(--muted);
+    }
+    .btn-yes:hover {
+      background: var(--pink);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(134,167,136,0.38);
+    }
+
+    .btn-no {
+      background: var(--accent);
+      color: #ffffff;
+      border: 1.5px solid var(--accent-dark);
+    }
+    .btn-no:hover {
+      background: var(--pink);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .btn:active { transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="eyebrow">Verification</p>
+    <h1>Are you yjhyl?</h1>
+    <p class="subtitle">Please confirm your identity to continue.</p>
+    <div class="divider"></div>
+    <div class="btn-group">
+      <button class="btn btn-yes" onclick="window.location.href='main.html'">Yes</button>
+      <button class="btn btn-no"  onclick="window.location.href='blank.html'">No</button>
+    </div>
+  </div>
+</body>
+</html>

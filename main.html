@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #FFFDEC;
+      --card:        #FFFFFF;
+      --surface2:    #fffaf0;
+      --accent:      #86A788;
+      --accent-dark: #6a8a6c;
+      --pink-light:  #FFE2E2;
+      --pink:        #FFCFCF;
+      --text:        #3a3530;
+      --muted:       #9a9188;
+      --border:      #ede8d8;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 5% 40%,  rgba(255,207,207,0.40) 0%, transparent 48%),
+        radial-gradient(ellipse at 95% 70%, rgba(134,167,136,0.12) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255,253,236,0.88);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--pink-light);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 48px 52px;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: var(--text);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    .accent-line {
+      width: 48px;
+      height: 3px;
+      background: var(--pink);
+      border-radius: 4px;
+      margin: 28px 0;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    /* ── SECTION CARD ── */
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 20px rgba(134,167,136,0.07);
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .section-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .section-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    /* ── GOOGLE DRIVE LINK ── */
+    /*
+      ✏️  HOW TO ADD YOUR GOOGLE DRIVE LINK:
+      Replace href="#YOUR_GOOGLE_DRIVE_LINK_HERE" with your actual link.
+      Example: href="https://drive.google.com/drive/folders/your-folder-id"
+    */
+    .drive-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+      padding: 13px 28px;
+      background: var(--accent);
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+    }
+    .drive-link:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(134,167,136,0.35);
+    }
+    .drive-link svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ── IMAGE GRID ── */
+    /*
+      ✏️  HOW TO ADD YOUR IMAGES:
+      Replace src="YOUR_IMAGE_URL_HERE" with an image path or URL.
+      For local images, put the file in the same folder and use: src="photo.jpg"
+      Add or remove <figure> blocks as needed.
+    */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    figure {
+      background: var(--pink-light);
+      border: 1px solid var(--pink);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    figure img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-placeholder {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--pink-light);
+      color: #c4a8a8;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    figcaption {
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 48px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav, .hero, main, footer { padding-left: 24px; padding-right: 24px; }
+      .hero { padding-top: 44px; }
+      .section-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <span class="nav-logo">To Yjhyl, my beloved</span>
+    <a href="index.html" class="nav-link">← Back</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <p class="eyebrow">Welcome</p>
+    <h1>Hello, my beloved Yjhyl.</h1>
+    <div class="accent-line"></div>
+    <p>
+      <!--
+        ✏️  Edit this description text to say whatever you like.
+      -->
+      Happy birthday my dear! I have a special message below, please view it my spidey wifey. - love zhielo
+    </p>
+  </section>
+
+  <!-- ── CONTENT ── -->
+  <main>
+
+    <!-- ── GOOGLE DRIVE SECTION ── -->
+    <div class="section-card">
+      <p class="section-label">my cute message to a cute and lovely person</p>
+      <h2>Message of love</h2>
+      <p>
+        <!--
+          ✏️  Edit this description text if you want.
+        -->
+        my letter is here my beloved!s
+      </p>
+
+      <!--
+        ✏️  STEP 1: Replace href="#YOUR_GOOGLE_DRIVE_LINK_HERE"
+                    with your actual Google Drive link.
+        Example:  href="https://drive.google.com/drive/folders/abc123"
+      -->
+      <a class="drive-link" href="#YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" rel="noopener">
+        <svg viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.6 66.85l3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3L28.08 52H6.6a7.95 7.95 0 000 4.15l.001 10.7z" />
+          <path d="M43.65 25L29.33 0c-1.35.8-2.5 1.9-3.3 3.3L1.6 48.3c-.8 1.4-1.25 3-1.25 4.7H22.08L43.65 25z" />
+          <path d="M80.75 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.77 7.65-13.23c.8-1.4 1.25-3 1.25-4.7H73.08l4.65 9z" />
+          <path d="M43.65 25L58 50H87.3c0-1.7-.45-3.3-1.25-4.7L61.2 3.3c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25z" />
+          <path d="M59.23 52H28.08L13.75 76.8c1.35.8 2.9 1.25 4.55 1.25h50.7c1.65 0 3.2-.45 4.55-1.25L59.23 52z" />
+        </svg>
+        Happy birthday love letter
+      </a>
+    </div>
+
+    <!-- ── IMAGES SECTION ── -->
+    <div class="section-card">
+      <p class="section-label">Gallery for my beautiful wife </p>
+      <h2>Museum of my beautiful wife's pictures</h2>
+      <p>
+        <!--
+          ✏️  Edit this description text if you want.
+        -->
+        A collection of images of my wife - z
+        
+      </p>
+
+      <!--
+        ✏️  IMAGE GRID — HOW TO ADD IMAGES:
+        For each image:
+          1. Find the <figure> block.
+          2. Delete the <div class="img-placeholder"> line.
+          3. Uncomment the <img> tag below it.
+          4. Replace src="YOUR_IMAGE_URL_HERE" with your file path or URL.
+          5. Update the <figcaption> text.
+          To add more images: copy-paste a whole <figure>…</figure> block.
+          To remove an image: delete the whole <figure>…</figure> block.
+      -->
+      <div class="image-grid">
+
+        <!-- Image 1 -->
+        <figure>
+          <div class="img-placeholder">Image 1</div>
+          <!-- <img src="YOUR_IMAGE_URL_HERE" alt="Image 1 description" /> -->
+          <figcaption>Caption for Image 1</figcaption>
+        </figure>
+
+        <!-- Image 2 -->
+        <figure>
+          <div class="img-placeholder">Image 2</div>
+          <!-- <img src="YOUR_IMAGE_URL_HERE" alt="Image 2 description" /> -->
+          <figcaption>Caption for Image 2</figcaption>
+        </figure>
+
+        <!-- Image 3 -->
+        <figure>
+          <div class="img-placeholder">Image 3</div>
+          <!-- <img src="YOUR_IMAGE_URL_HERE" alt="Image 3 description" /> -->
+          <figcaption>Caption for Image 3</figcaption>
+        </figure>
+
+      </div><!-- end .image-grid -->
+    </div>
+
+  </main>
+
+  <footer>
+    yjhyl · personal page
+  </footer>
+
+</body>
+</html>
